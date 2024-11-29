@@ -1,25 +1,53 @@
 <template>
-  <app-layout>
-    <div class="example-container">
-      <h1>组件库示例</h1>
-      <section>
-        <h2>按钮组件示例</h2>
-        <my-button>默认按钮</my-button>
-        <my-button type="primary">主要按钮</my-button>
-        <my-button disabled>禁用按钮</my-button>
-      </section>
-    </div>
-  </app-layout>
+  <ml-layout>
+    <!-- 基础用法 -->
+    <ml-navbar title="标题" />
+
+    <!-- 自定义背景图 -->
+    <ml-navbar 
+      title="带背景图的导航栏"
+      bg-image="/path/to/navbar-bg.png"
+    />
+
+    <!-- 自定义左右内容 -->
+    <ml-navbar>
+      <template #left>
+        <div @click="onBack">返回</div>
+      </template>
+      <template #title>
+        <div class="custom-title">自定义标题</div>
+      </template>
+      <template #right>
+        <div @click="onMore">更多</div>
+      </template>
+    </ml-navbar>
+  </ml-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { AppLayout } from '../src/index'
+import { MlLayout, MlNavbar } from '../src/index'
 
 export default defineComponent({
   name: 'App',
   components: {
-    AppLayout
+    MlLayout,
+    MlNavbar
+  },
+  setup() {
+    const onBack = () => {
+      console.log('点击返回')
+      window.history.back()
+    }
+
+    const onMore = () => {
+      console.log('点击更多')
+    }
+
+    return {
+      onBack,
+      onMore
+    }
   }
 })
 </script>
@@ -38,7 +66,11 @@ h1, h2 {
   margin-bottom: 20px;
 }
 
-.my-button {
+.ml-button {
   margin-right: 10px;
+}
+
+.custom-title {
+  font-weight: bold;
 }
 </style> 

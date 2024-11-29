@@ -1,5 +1,5 @@
 <template>
-  <div class="app-layout" :class="{ 'no-bg': !showBackground }">
+  <div class="ml-layout" :class="{ 'ml-layout--no-bg': !showBackground }">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,7 @@ import { defineComponent } from 'vue'
 import bgImage from '@/assets/bg.png'
 
 export default defineComponent({
-  name: 'AppLayout',
+  name: 'MlLayout',
   props: {
     // 可以支持自定义背景图
     bgImage: {
@@ -42,7 +42,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.app-layout {
+.ml-layout {
   min-height: 100vh;
   width: 100%;
   background-color: #f5f5f5;
@@ -53,16 +53,16 @@ export default defineComponent({
 }
 
 /* 不显示背景图时的样式 */
-.app-layout.no-bg {
+.ml-layout--no-bg {
   background-image: none;
 }
 
 /* 提供一些预设的背景样式 */
-.app-layout--pattern1 {
+.ml-layout--pattern1 {
   background-image: v-bind('getBackgroundImage()');
 }
 
-.app-layout--pattern2 {
+.ml-layout--pattern2 {
   background-image: v-bind('getBackgroundImage()');
 }
 </style> 

@@ -1,7 +1,7 @@
 <template>
   <button 
-    class="my-button"
-    :class="[`my-button--${type}`, { 'my-button--disabled': disabled }]"
+    class="ml-button"
+    :class="[`ml-button--${type}`, { 'ml-button--disabled': disabled }]"
     :disabled="disabled"
     @click="handleClick"
   >
@@ -13,7 +13,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'MyButton',
+  name: 'MlButton',
   props: {
     type: {
       type: String,
@@ -40,25 +40,25 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.my-button {
+.ml-button {
   padding: 8px 16px;
   border-radius: 4px;
   border: none;
   cursor: pointer;
 }
 
-.my-button--default {
+.ml-button--default {
   background-color: #fff;
   border: 1px solid #dcdfe6;
   color: #606266;
 }
 
-.my-button--primary {
+.ml-button--primary {
   background-color: #409eff;
   color: #fff;
 }
 
-.my-button--disabled {
+.ml-button--disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

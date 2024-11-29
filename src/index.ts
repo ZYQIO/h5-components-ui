@@ -1,11 +1,12 @@
 import { App } from 'vue'
-import MyButton from './components/MyButton/MyButton.vue'
-import AppLayout from './components/AppLayout/AppLayout.vue'
+import MlButton from './components/MyButton/MyButton.vue'
+import MlLayout from './components/AppLayout/AppLayout.vue'
+import MlNavbar from './components/MlNavbar/MlNavbar.vue'
 import { Theme } from './theme'
 import { themePresets } from './theme/presets'
 
 // 导出单个组件
-export { MyButton, AppLayout }
+export { MlButton, MlLayout, MlNavbar }
 
 // 导出主题相关
 export { Theme, themePresets }
@@ -15,8 +16,9 @@ export type { ThemePreset } from './theme/presets'
 // 导出插件
 export default {
   install: (app: App) => {
-    app.component('MyButton', MyButton)
-    app.component('AppLayout', AppLayout)
+    app.component('MlButton', MlButton)
+    app.component('MlLayout', MlLayout)
+    app.component('MlNavbar', MlNavbar)
   }
 }
 
