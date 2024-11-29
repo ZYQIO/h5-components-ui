@@ -4,41 +4,32 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import bgImage from '@/assets/bg.png'
 
-export default defineComponent({
-  name: 'MlLayout',
-  props: {
-    // 可以支持自定义背景图
-    bgImage: {
-      type: String,
-      default: ''
-    },
-    // 控制是否显示背景图
-    showBackground: {
-      type: Boolean,
-      default: true
-    }
-  },
-  setup(props) {
-    // 处理背景图片路径
-    const getBackgroundImage = () => {
-      if (!props.showBackground) {
-        return 'none'
-      }
-      if (props.bgImage) {
-        return `url(${props.bgImage})`
-      }
-      return `url(${bgImage})`
-    }
-
-    return {
-      getBackgroundImage
-    }
-  }
+defineOptions({
+  name: 'MlLayout'
 })
+
+interface Props {
+  bgImage?: string
+  showBackground?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  bgImage: '',
+  showBackground: true
+})
+
+const getBackgroundImage = () => {
+  if (!props.showBackground) {
+    return 'none'
+  }
+  if (props.bgImage) {
+    return `url(${props.bgImage})`
+  }
+  return `url(${bgImage})`
+}
 </script>
 
 <style scoped>

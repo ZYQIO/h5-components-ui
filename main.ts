@@ -4,6 +4,7 @@ import MyH5Components from 'my-h5-components'
 // 引入样式文件
 import 'my-h5-components/dist/style.css'
 import { Theme } from 'my-h5-components'
+import { MlNavbar } from 'my-h5-components'
 
 const app = createApp(App)
 app.use(MyH5Components)

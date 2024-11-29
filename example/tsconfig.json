@@ -22,13 +22,11 @@
     "**/*.ts",
     "**/*.d.ts",
     "**/*.tsx",
-    "**/*.vue"
+    "**/*.vue",
+    "../src/**/*.ts",
+    "../src/**/*.vue"
   ],
   "references": [
     { "path": "../tsconfig.node.json" }
-  ],
-  "exclude": [
-    "../src/**/*.vue",
-    "../src/**/*.ts"
   ]
 } 

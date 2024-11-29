@@ -7,8 +7,7 @@
   "module": "dist/index.mjs",
   "types": "dist/types/index.d.ts",
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -24,9 +23,10 @@
   "scripts": {
     "dev": "vite -c example/vite.config.ts serve example",
     "build": "rimraf dist && vue-tsc --declaration --emitDeclarationOnly && vite build",
-    "publish:yalc": "npm run build && yalc publish",
-    "push:yalc": "npm run build && yalc push",
+    "publish:yalc": "npm run build && yalc publish --push --replace",
+    "push:yalc": "rimraf dist && npm run build && yalc push --replace --force",
     "watch:yalc": "nodemon --watch src -e vue,ts,js,css --exec 'npm run push:yalc'",
+    "update": "powershell -File ./scripts/update-component.ps1",
     "preview": "vite preview"
   },
   "devDependencies": {

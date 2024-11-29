@@ -23,11 +23,13 @@ export default defineConfig({
           vant: 'vant'
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'style.css'
+          if (assetInfo.name.endsWith('.css')) return 'style.css'
           return `assets/[name]-[hash][extname]`
         }
       }
     },
-    cssCodeSplit: false
+    cssCodeSplit: false,
+    minify: false,
+    sourcemap: true
   }
 })

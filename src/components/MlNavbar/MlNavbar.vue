@@ -18,9 +18,9 @@
     </div>
 
     <!-- 标题区域 -->
-    <div class="ml-navbar__title">
+    <!-- <div class="ml-navbar__title">
       <slot name="title">{{ title }}</slot>
-    </div>
+    </div> -->
 
     <!-- 右侧按钮区域 -->
     <div class="ml-navbar__right">
@@ -36,91 +36,80 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
+<script lang="ts" setup>
+import { computed, defineProps, defineEmits } from 'vue'
 
-export default defineComponent({
-  name: 'MlNavbar',
-  props: {
-    // 标题
-    title: {
-      type: String,
-      default: ''
-    },
-    // 是否显示返回按钮
-    showBack: {
-      type: Boolean,
-      default: true
-    },
-    // 返回按钮文字
-    backText: {
-      type: String,
-      default: '返回'
-    },
-    // 是否固定在顶部
-    fixed: {
-      type: Boolean,
-      default: true
-    },
-    // 背景图片
-    bgImage: {
-      type: String,
-      default: ''
-    },
-    // 是否显示背景
-    showBackground: {
-      type: Boolean,
-      default: true
-    },
-    // 导航栏高度
-    height: {
-      type: [String, Number],
-      default: 44
-    },
-    // 状态栏高度（用于iOS）
-    statusBarHeight: {
-      type: [String, Number],
-      default: 20
-    },
-    // 自定义z-index
-    zIndex: {
-      type: [String, Number],
-      default: 100
-    }
+const props = defineProps({
+  // 标题
+  title: {
+    type: String,
+    default: ''
   },
-
-  emits: ['back-click'],
-
-  setup(props, { emit }) {
-    // 计算导航栏样式
-    const navbarStyle = computed(() => {
-      const style: Record<string, string> = {
-        height: `${Number(props.height) + Number(props.statusBarHeight)}px`,
-        zIndex: String(props.zIndex)
-      }
-      return style
-    })
-
-    // 计算背景图样式
-    const bgStyle = computed(() => ({
-      backgroundImage: props.bgImage ? `url(${props.bgImage})` : 'none'
-    }))
-
-    // 处理返回按钮点击
-    const handleBack = () => {
-      emit('back-click')
-      if (window.history.length > 1) {
-        window.history.back()
-      }
-    }
-
-    return {
-      navbarStyle,
-      bgStyle,
-      handleBack
-    }
+  // 是否显示返回按钮
+  showBack: {
+    type: Boolean,
+    default: true
+  },
+  // 返回按钮文字
+  backText: {
+    type: String,
+    default: '返回'
+  },
+  // 是否固定在顶部
+  fixed: {
+    type: Boolean,
+    default: true
+  },
+  // 背景图片
+  bgImage: {
+    type: String,
+    default: ''
+  },
+  // 是否显示背景
+  showBackground: {
+    type: Boolean,
+    default: true
+  },
+  // 导航栏高度
+  height: {
+    type: [String, Number],
+    default: 44
+  },
+  // 状态栏高度（用于iOS）
+  statusBarHeight: {
+    type: [String, Number],
+    default: 20
+  },
+  // 自定义z-index
+  zIndex: {
+    type: [String, Number],
+    default: 100
   }
 })
+
+const emit = defineEmits(['back-click'])
+
+// 计算导航栏样式
+const navbarStyle = computed(() => {
+  const style: Record<string, string> = {
+    height: `${Number(props.height) + Number(props.statusBarHeight)}px`,
+    zIndex: String(props.zIndex)
+  }
+  return style
+})
+
+// 计算背景图样式
+const bgStyle = computed(() => ({
+  backgroundImage: props.bgImage ? `url(${props.bgImage})` : 'none'
+}))
+
+// 处理返回按钮点击
+const handleBack = () => {
+  emit('back-click')
+  if (window.history.length > 1) {
+    window.history.back()
+  }
+}
 </script>
 
 <style scoped>

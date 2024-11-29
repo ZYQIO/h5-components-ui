@@ -1,0 +1,5 @@
+example/
+templates/
+node_modules/
+src/
+*.log 

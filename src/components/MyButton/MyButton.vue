@@ -9,34 +9,30 @@
   </button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'MlButton',
-  props: {
-    type: {
-      type: String,
-      default: 'default'
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: ['click'],
-  setup(props, { emit }) {
-    const handleClick = (event: MouseEvent) => {
-      if (!props.disabled) {
-        emit('click', event)
-      }
-    }
-
-    return {
-      handleClick
-    }
-  }
+<script setup lang="ts">
+defineOptions({
+  name: 'MlButton'
 })
+
+interface Props {
+  type?: 'default' | 'primary'
+  disabled?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  type: 'default',
+  disabled: false
+})
+
+const emit = defineEmits<{
+  click: [event: MouseEvent]
+}>()
+
+const handleClick = (event: MouseEvent) => {
+  if (!props.disabled) {
+    emit('click', event)
+  }
+}
 </script>
 
 <style scoped>
